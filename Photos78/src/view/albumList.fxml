@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12" xmlns:fx="http://javafx.com/fxml">
+
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <Label fx:id="welcomeLabel"
+           style="-fx-font-size: 20px; -fx-font-weight: bold;"
+           text="My Albums"/>
+
+    <!-- Album Table -->
+    <TableView fx:id="albumTable" prefHeight="320">
+        <columns>
+            <TableColumn fx:id="nameCol"      text="Album Name" prefWidth="200"/>
+            <TableColumn fx:id="countCol"     text="# Photos"   prefWidth="80"/>
+            <TableColumn fx:id="dateRangeCol" text="Date Range" prefWidth="300"/>
+        </columns>
+    </TableView>
+
+    <!-- Action Buttons -->
+    <HBox spacing="10">
+        <Button text="Create Album" onAction="#handleCreateAlbum"/>
+        <Button text="Rename Album" onAction="#handleRenameAlbum"/>
+        <Button text="Delete Album" onAction="#handleDeleteAlbum"/>
+        <Button text="Open Album"   onAction="#handleOpenAlbum"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="Search Photos" onAction="#handleSearch"/>
+        <Button text="Logout"        onAction="#handleLogout"/>
+    </HBox>
+
+    <Label fx:id="statusLabel"
+           style="-fx-text-fill: red; -fx-font-size: 12px;"
+           text=""/>
+
+</VBox>
