@@ -24,7 +24,7 @@ import java.util.Optional;
  * Controller for the album view.
  * Displays photo thumbnails and handles photo management operations.
  *
- *
+ * @author Mihail Bogdanoski, Kim Do
  */
 public class AlbumViewController {
 
@@ -38,7 +38,7 @@ public class AlbumViewController {
     private Photo       selectedPhoto;  // currently selected photo
 
     /**
-     * Injects context into this controller.
+     * Puts in context into this controller.
      * @param um     the shared UserManager
      * @param user   the logged-in user
      * @param album  the album being viewed
@@ -107,7 +107,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Add Photo button.
+     * Works with Add Photo button.
      * Opens a FileChooser and adds the selected photo to the album.
      */
     @FXML
@@ -133,7 +133,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Remove Photo button.
+     * Works with Remove Photo button.
      */
     @FXML
     private void handleRemovePhoto() {
@@ -153,7 +153,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Caption Photo button.
+     * Works with Caption Photo button.
      */
     @FXML
     private void handleCaptionPhoto() {
@@ -173,7 +173,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Display Photo button — opens the photo detail view.
+     * Works with Display Photo button — opens the photo detail view.
      */
     @FXML
     private void handleDisplayPhoto() {
@@ -199,7 +199,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Add Tag — opens photo detail to add tag.
+     * Works with Add Tag — opens photo detail to add tag.
      */
     @FXML
     private void handleAddTag() {
@@ -208,7 +208,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Remove Tag — opens photo detail to remove tag.
+     * Works with Remove Tag — opens photo detail to remove tag.
      */
     @FXML
     private void handleRemoveTag() {
@@ -217,7 +217,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Copy Photo to another album.
+     * Works with Copy Photo to another album.
      */
     @FXML
     private void handleCopyPhoto() {
@@ -251,7 +251,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Move Photo — copies then removes from source album.
+     * Works with Move Photo — copies then removes from source album.
      */
     @FXML
     private void handleMovePhoto() {
@@ -290,7 +290,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Prev button — selects the previous photo in the album.
+     * Works with Prev button — selects the previous photo in the album.
      */
     @FXML
     private void handlePrev() {
@@ -303,7 +303,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Next button — selects the next photo in the album.
+     * Works with Next button — selects the next photo in the album.
      */
     @FXML
     private void handleNext() {
@@ -331,7 +331,7 @@ public class AlbumViewController {
     }
 
     /**
-     * Handles Back button — returns to album list.
+     * Works with Back button — returns to album list.
      */
     @FXML
     private void handleBack() {
