@@ -27,7 +27,7 @@ import java.util.Optional;
  * Controller for the search view.
  * Searches photos by date range or by tag (AND/OR).
  *
- * @author YourName
+ * @author Mihail Bogdanoski, Kim Do
  */
 public class SearchController {
 
@@ -173,7 +173,7 @@ public class SearchController {
     }
 
     /**
-     * looks at all albums for photos matching tag criteria.
+     * Searches all albums for photos matching tag criteria.
      */
     private void searchByTag() {
         String t1Name  = tag1TypeField.getText().trim().toLowerCase();
@@ -209,7 +209,7 @@ public class SearchController {
     }
 
     /**
-     * makes a new album from the current search results.
+     * Makes a new album from the current search results.
      */
     @FXML
     private void handleCreateAlbumFromResults() {
