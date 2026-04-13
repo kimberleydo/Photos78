@@ -38,7 +38,7 @@ public class Album implements Serializable {
      * @return true if added, false if duplicate
      */
     public boolean addPhoto(Photo photo) {
-        if (photos.contains(photo)) return false;
+        if (photos.contains(photo)) return false; //prevent duplicates
         photos.add(photo);
         return true;
     }
@@ -52,23 +52,8 @@ public class Album implements Serializable {
     }
 
     /**
-     * Returns the oldest date among all photos
-     * @return earliest Calendar date
-     */
-    public Calendar getEarliestDate() {
-        if (photos.isEmpty()) return null;
-        Calendar earliest = photos.get(0).getDateTaken();
-        for (Photo p : photos) {
-            if (p.getDateTaken().before(earliest)) {
-                earliest = p.getDateTaken();
-            }
-        }
-        return earliest;
-    }
-
-    /**
      * Returns the newest date among all photos
-     * @return latest Calendar date
+     * @return latest calendar date
      */
     public Calendar getLatestDate() {
         if (photos.isEmpty()) return null;
@@ -81,6 +66,21 @@ public class Album implements Serializable {
         return latest;
     }
 
+    /**
+     * Returns the oldest date among all photos
+     * @return earliest calendar date
+     */
+    public Calendar getEarliestDate() {
+        if (photos.isEmpty()) return null;
+        Calendar earliest = photos.get(0).getDateTaken();
+        for (Photo p : photos) {
+            if (p.getDateTaken().before(earliest)) {
+                earliest = p.getDateTaken();
+            }
+        }
+        return earliest;
+    }
+    
     @Override
     public String toString() {
         return name + " (" + photos.size() + " photos)";
