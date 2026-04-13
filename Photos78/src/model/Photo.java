@@ -52,7 +52,7 @@ public class Photo implements Serializable {
      * @return true if added, false if duplicate
      */
     public boolean addTag(Tag tag) {
-        if (tags.contains(tag)) return false;
+        if (tags.contains(tag)) return false; //prevent duplicates
         tags.add(tag);
         return true;
     }
@@ -72,7 +72,7 @@ public class Photo implements Serializable {
      * @param value tag value to search
      */
     public boolean hasTag(String name, String value) {
-        return tags.contains(new Tag(name, value));
+        return tags.contains(new Tag(name, value)); //takes the name = "value"
     }
 
     @Override
