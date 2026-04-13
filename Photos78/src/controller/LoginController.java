@@ -11,7 +11,7 @@ import model.UserManager;
 
 /**
  * Controller for the login
- * Handles user authentication and routing
+ * Works with user authentication and routing
  *
  * @author Mihail Bogdanoski, Kim Do
  */
@@ -19,6 +19,7 @@ public class LoginController {
 
     @FXML private TextField usernameField;
     @FXML private Label     errorLabel;
+    @FXML private Label statusLabel;
 
     // Shared UserManager across everything
     private UserManager userManager;
@@ -39,20 +40,48 @@ public class LoginController {
     private void handleLogin() {
         String username = usernameField.getText().trim();
 
-        if (username.isEmpty()) {
-            errorLabel.setText("Please enter a username.");
+        if (username.equals("admin")) {
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/view/admin.fxml"));
+                Stage stage = (Stage) usernameField.getScene().getWindow();
+
+                AdminController controller = new AdminController();
+                controller.setUserManager(userManager);
+                loader.setController(controller);
+
+                stage.setScene(new Scene(loader.load(), 400, 450));
+                stage.setTitle("Admin Panel");
+                controller.refresh();
+            } catch (Exception e) {
+                setError("Error loading admin panel: " + e.getMessage());
+                e.printStackTrace();
+            }
             return;
         }
 
-        if (username.equals("admin")) {
-            loadAdminView();
-        } else {
-            User user = userManager.getUser(username);
-            if (user == null) {
-                errorLabel.setText("User \"" + username + "\" not found.");
-            } else {
-                loadAlbumListView(user);
-            }
+        // Regular user login
+        User user = userManager.findUser(username);
+        if (user == null) {
+            setError("User not found.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/view/albumList.fxml"));
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+
+            AlbumListController controller = new AlbumListController();
+            controller.setUserManager(userManager, user);
+            loader.setController(controller);
+
+            stage.setScene(new Scene(loader.load(), 700, 500));
+            stage.setTitle("Photos – " + username);
+            controller.refresh();
+        } catch (Exception e) {
+            setError("Error loading album list: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -93,9 +122,21 @@ public class LoginController {
 
             stage.setScene(new Scene(loader.load(), 700, 500));
             stage.setTitle("Photos – " + user.getUsername());
+
+            controller.refresh(); // ← add this line
         } catch (Exception e) {
             errorLabel.setText("Error loading user view.");
             e.printStackTrace();
         }
     }
+    private void setError(String msg) {
+    statusLabel.setStyle("-fx-text-fill: red;");
+    statusLabel.setText(msg);
+    }
+
+    private void setSuccess(String msg) {
+        statusLabel.setStyle("-fx-text-fill: green;");
+        statusLabel.setText(msg);
+    }
+
 }
