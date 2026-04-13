@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12" xmlns:fx="http://javafx.com/fxml">
+
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="← Back" onAction="#handleBack"/>
+        <Label text="Search Photos"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <!-- Mode toggle -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Search by:"/>
+        <RadioButton fx:id="dateRadio" text="Date Range" onAction="#handleModeSwitch"/>
+        <RadioButton fx:id="tagRadio"  text="Tags"       onAction="#handleModeSwitch"/>
+    </HBox>
+
+    <!-- Date Range Panel -->
+    <VBox fx:id="datePanel" spacing="8"
+          style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-padding: 10;">
+        <Label text="Date Range Search" style="-fx-font-weight: bold;"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="From (MM/DD/YYYY):"/>
+            <TextField fx:id="fromDateField" promptText="01/01/2024" maxWidth="130"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="To   (MM/DD/YYYY):"/>
+            <TextField fx:id="toDateField"   promptText="12/31/2024" maxWidth="130"/>
+        </HBox>
+    </VBox>
+
+    <!-- Tag Search Panel -->
+    <VBox fx:id="tagPanel" spacing="8"
+          style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-padding: 10;">
+        <Label text="Tag Search" style="-fx-font-weight: bold;"/>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Label text="Tag 1 — Type:"/>
+            <TextField fx:id="tag1TypeField"  promptText="e.g. person"   maxWidth="110"/>
+            <Label text="Value:"/>
+            <TextField fx:id="tag1ValueField" promptText="e.g. Susan"    maxWidth="110"/>
+        </HBox>
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <Label text="Combine with:"/>
+            <RadioButton fx:id="andRadio" text="AND"/>
+            <RadioButton fx:id="orRadio"  text="OR"/>
+        </HBox>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Label text="Tag 2 — Type:"/>
+            <TextField fx:id="tag2TypeField"  promptText="e.g. location" maxWidth="110"/>
+            <Label text="Value:"/>
+            <TextField fx:id="tag2ValueField" promptText="e.g. Prague"   maxWidth="110"/>
+        </HBox>
+        <Label text="(Leave Tag 2 blank for single tag search)"
+               style="-fx-text-fill: gray; -fx-font-size: 11px;"/>
+    </VBox>
+
+    <Button text="Search" onAction="#handleSearch"
+            style="-fx-font-size: 14px;"/>
+
+    <Label text="Results:" style="-fx-font-weight: bold;"/>
+    <ListView fx:id="resultsListView" prefHeight="160"/>
+
+    <Button text="Create Album from Results"
+            onAction="#handleCreateAlbumFromResults"/>
+
+    <Label fx:id="statusLabel"
+           style="-fx-text-fill: red; -fx-font-size: 12px;" text=""/>
+
+</VBox>
