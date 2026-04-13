@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox spacing="20" xmlns:fx="http://javafx.com/fxml">
+
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <VBox spacing="10" HBox.hgrow="ALWAYS">
+        <Button text="← Back to Album" onAction="#handleBack"/>
+        <ImageView fx:id="photoImageView"
+                   fitWidth="420" fitHeight="360"
+                   preserveRatio="true"/>
+        <Label fx:id="captionLabel"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <Label fx:id="dateLabel"
+               style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+    </VBox>
+
+    <VBox spacing="10" minWidth="220">
+        <Label text="Tags"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <ListView fx:id="tagListView" prefHeight="280"/>
+        <HBox spacing="8">
+            <Button text="Add Tag"    onAction="#handleAddTag"/>
+            <Button text="Delete Tag" onAction="#handleDeleteTag"/>
+        </HBox>
+        <HBox spacing="8" alignment="CENTER">
+            <Button text="◀ Prev" onAction="#handlePrev"/>
+            <Button text="Next ▶" onAction="#handleNext"/>
+        </HBox>
+        <Label fx:id="statusLabel"
+               style="-fx-text-fill: red; -fx-font-size: 11px;"
+               text="" wrapText="true"/>
+    </VBox>
+
+</HBox>
