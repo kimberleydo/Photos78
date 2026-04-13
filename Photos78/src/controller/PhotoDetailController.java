@@ -28,9 +28,9 @@ import java.util.Optional;
 
 /**
  * Controller for the photo detail view.
- * Shows full image, caption, date, and tags.
+ * Shows full image and caption, date, and tags.
  *
- *
+ * @author Mihail Bogdanoski, Kim Do
  */
 public class PhotoDetailController {
 
@@ -95,7 +95,7 @@ public class PhotoDetailController {
         statusLabel.setText("");
     }
 
-    /** Handles Add Tag button. */
+    /** Works with Add Tag button. */
     @FXML
     private void handleAddTag() {
         List<String> choices = new ArrayList<>(tagTypes);
@@ -135,7 +135,7 @@ public class PhotoDetailController {
         }
     }
 
-    /** Handles Delete Tag button. */
+    /** Works with Delete Tag button. */
     @FXML
     private void handleDeleteTag() {
         int idx = tagListView.getSelectionModel().getSelectedIndex();
