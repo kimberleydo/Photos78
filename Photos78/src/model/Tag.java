@@ -40,7 +40,8 @@ public class Tag implements Serializable {
 
     @Override
     public int hashCode() {
-        return 31 * name.hashCode() + value.hashCode();
+        return 31 * name.hashCode() + value.hashCode(); //generates hash code based on name and value
+                                                        //equal tags have the same hash code
     }
 
     @Override
