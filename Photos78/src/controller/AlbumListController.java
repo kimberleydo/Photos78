@@ -40,9 +40,9 @@ public class AlbumListController {
         new SimpleDateFormat("MMM dd, yyyy");
 
     /**
-     * for the UserManager and current user.
-     * @param userManager 
-     * @param user        
+     * Injects the UserManager and current user.
+     * @param userManager the shared UserManager
+     * @param user        the logged-in user
      */
     public void setUserManager(UserManager userManager, User user) {
         this.userManager = userManager;
@@ -50,7 +50,8 @@ public class AlbumListController {
     }
 
     /**
-     * Called automatically after FXML fields are done.
+     * Called automatically after FXML fields are injected.
+     * Sets up table columns.
      */
     @FXML
     public void initialize() {
@@ -79,6 +80,7 @@ public class AlbumListController {
 
     /**
      * Refreshes the table and welcome label.
+     * Must be called after setUserManager().
      */
     public void refresh() {
         welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
@@ -164,28 +166,28 @@ public class AlbumListController {
     /**
      * Works with Open Album button — loads the album view.
      */
-    @FXML
-    private void handleOpenAlbum() {
-        Album selected = albumTable.getSelectionModel().getSelectedItem();
-        if (selected == null) { setError("Select an album to open."); return; }
+@FXML
+private void handleOpenAlbum() {
+    Album selected = albumTable.getSelectionModel().getSelectedItem();
+    if (selected == null) { setError("Select an album to open."); return; }
 
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/view/albumView.fxml"));
-            Stage stage = (Stage) albumTable.getScene().getWindow();
+    try {
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/view/albumView.fxml"));
+        Stage stage = (Stage) albumTable.getScene().getWindow();
 
-            AlbumViewController controller = new AlbumViewController();
-            controller.setContext(userManager, currentUser, selected);
-            loader.setController(controller);
+        AlbumViewController controller = new AlbumViewController();
+        controller.setContext(userManager, currentUser, selected);
+        loader.setController(controller);
 
-            stage.setScene(new Scene(loader.load(), 750, 550));
-            stage.setTitle("Album – " + selected.getName());
-            controller.refresh();
-        } catch (Exception e) {
-            setError("Error opening album.");
-            e.printStackTrace();
-        }
+        stage.setScene(new Scene(loader.load(), 750, 550));
+        stage.setTitle("Album – " + selected.getName());
+        controller.refresh();
+    } catch (Exception e) {
+        setError("Error opening album: " + e.getMessage());
+        e.printStackTrace();
     }
+}
 
     /**
      * Works with Search button — loads the search view.
