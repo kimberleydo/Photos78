@@ -61,7 +61,7 @@ public class LoginController {
         }
 
         // Regular user login
-        User user = userManager.findUser(username);
+        User user = userManager.getUser(username);
         if (user == null) {
             setError("User not found.");
             return;
