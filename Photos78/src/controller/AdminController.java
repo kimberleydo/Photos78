@@ -73,12 +73,12 @@ public class AdminController {
                 setError("Cannot create a user named 'admin'.");
                 return;
             }
-            if (userManager.findUser(username) != null) {
+            if (userManager.getUser(username) != null) {
                 setError("User \"" + username + "\" already exists.");
                 return;
             }
 
-            userManager.addUser(new User(username));
+            userManager.addUser(username);
             refresh();
             setSuccess("User \"" + username + "\" created.");
         });
@@ -105,7 +105,7 @@ public class AdminController {
         Optional<ButtonType> result = confirm.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
-            userManager.removeUser(selected);
+            userManager.deleteUser(selected);
             refresh();
             setSuccess("User \"" + selected + "\" deleted.");
         }
